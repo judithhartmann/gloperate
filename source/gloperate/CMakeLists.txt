@@ -107,6 +107,7 @@ set(headers
     ${include_path}/stages/base/SplitStage.h
     ${include_path}/stages/demos/DemoStage.h
     ${include_path}/stages/demos/DemoPipeline.h
+    ${include_path}/stages/demos/DemoPipeline2.h
     ${include_path}/stages/demos/DemoTriangleStage.h
     ${include_path}/stages/demos/DemoTimerStage.h
 
@@ -173,6 +174,7 @@ set(sources
     ${source_path}/stages/base/SplitStage.cpp
     ${source_path}/stages/demos/DemoStage.cpp
     ${source_path}/stages/demos/DemoPipeline.cpp
+    ${source_path}/stages/demos/DemoPipeline2.cpp
     ${source_path}/stages/demos/DemoTriangleStage.cpp
     ${source_path}/stages/demos/DemoTimerStage.cpp
 
