@@ -28,6 +28,7 @@ void main()
     //g_normal = normal;
     gl_Position = viewProjection * gl_Position;
     g_fontColor = v_fontColor[0];
+
     EmitVertex();
     
     // upper right
@@ -36,6 +37,7 @@ void main()
     //g_normal = normal;
     gl_Position = viewProjection * gl_Position;
     g_fontColor = v_fontColor[0];
+
     EmitVertex();
     
     // lower left
@@ -44,6 +46,7 @@ void main()
     //g_normal = normal;
     gl_Position = viewProjection * gl_Position;
     g_fontColor = v_fontColor[0];
+
     EmitVertex();
 
     // upper left
@@ -52,6 +55,7 @@ void main()
     //g_normal = normal;
     gl_Position = viewProjection * gl_Position;
     g_fontColor = v_fontColor[0];
+
     EmitVertex();
 
     EndPrimitive();

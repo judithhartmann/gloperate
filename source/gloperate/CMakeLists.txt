@@ -21,10 +21,11 @@ set(target gloperate)
 message(STATUS "Lib ${target}")
 
 # Set API export file and macro
-string(TOUPPER ${target} target_upper)
+string(MAKE_C_IDENTIFIER ${target} target_id)
+string(TOUPPER ${target_id} target_id)
 set(feature_file "include/${target}/${target}_features.h")
 set(export_file  "include/${target}/${target}_api.h")
-set(export_macro "${target_upper}_API")
+set(export_macro "${target_id}_API")
 
 
 # 
@@ -124,7 +125,8 @@ set(headers
     ${include_path}/primitives/AbstractDrawable.h
     ${include_path}/primitives/UniformGroup.hpp
     ${include_path}/primitives/Interpolation.h
-    ${include_path}/primitives/VertexDrawable.h
+    ${include_path}/primitives/Drawable.h
+    ${include_path}/primitives/Drawable.hpp
     ${include_path}/primitives/AdaptiveGrid.h
     ${include_path}/primitives/ScreenAlignedQuad.h
     ${include_path}/primitives/Icosahedron.h
@@ -133,6 +135,7 @@ set(headers
     ${include_path}/primitives/PolygonalGeometry.h
     ${include_path}/primitives/PolygonalDrawable.h
     ${include_path}/primitives/Scene.h
+    ${include_path}/primitives/RenderPass.h
     
     ${include_path}/resources/ResourceManager.hpp
     ${include_path}/resources/RawFile.h
@@ -230,7 +233,7 @@ set(sources
 
     ${source_path}/primitives/AbstractDrawable.cpp
     ${source_path}/primitives/Plane3.cpp
-    ${source_path}/primitives/VertexDrawable.cpp
+    ${source_path}/primitives/Drawable.cpp
     ${source_path}/primitives/UniformGroup.cpp
     ${source_path}/primitives/ScreenAlignedQuad.cpp
     ${source_path}/primitives/AxisAlignedBoundingBox.cpp
@@ -240,6 +243,7 @@ set(sources
     ${source_path}/primitives/PolygonalGeometry.cpp
     ${source_path}/primitives/PolygonalDrawable.cpp
     ${source_path}/primitives/Scene.cpp
+    ${source_path}/primitives/RenderPass.cpp
     
     ${source_path}/resources/AbstractStorer.cpp
     ${source_path}/resources/AbstractLoader.cpp
@@ -353,7 +357,7 @@ target_compile_definitions(${target}
     PRIVATE
 
     PUBLIC
-    $<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:${target_upper}_STATIC_DEFINE>
+    $<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:${target_id}_STATIC_DEFINE>
     ${DEFAULT_COMPILE_DEFINITIONS}
     GLM_FORCE_RADIANS
 
