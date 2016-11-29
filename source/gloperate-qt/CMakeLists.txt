@@ -66,6 +66,7 @@ set(headers
     ${include_path}/viewer/QtMouseEventProvider.h
     ${include_path}/viewer/QtOpenGLWindow.h
     ${include_path}/viewer/QtOpenGLWindowBase.h
+    ${include_path}/viewer/QtPipelinePainter.h
     ${include_path}/viewer/QtTextureLoader.h
     ${include_path}/viewer/QtTextureStorer.h
     ${include_path}/viewer/QtWheelEventProvider.h
@@ -100,6 +101,7 @@ set(sources
     ${source_path}/viewer/QtMouseEventProvider.cpp
     ${source_path}/viewer/QtOpenGLWindow.cpp
     ${source_path}/viewer/QtOpenGLWindowBase.cpp
+    ${source_path}/viewer/QtPipelinePainter.cpp
     ${source_path}/viewer/QtTextureLoader.cpp
     ${source_path}/viewer/QtTextureStorer.cpp
     ${source_path}/viewer/QtWheelEventProvider.cpp

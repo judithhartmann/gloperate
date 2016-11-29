@@ -174,7 +174,7 @@ protected:
     std::unique_ptr<gloperate::Painter>              m_painter;
     std::unique_ptr<DefaultMapping>                  m_mapping;
 
-    std::unique_ptr<QtOpenGLWindow>                  m_canvas;
+    std::shared_ptr<QtOpenGLWindow>                  m_canvas;
     std::unique_ptr<widgetzeug::MessageStatusWidget> m_messagesStatus;
     std::unique_ptr<widgetzeug::MessageWidget>       m_messagesLog;
     std::unique_ptr<widgetzeug::ScriptPromptWidget>  m_scriptPrompt;

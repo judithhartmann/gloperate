@@ -40,6 +40,7 @@
 #include <gloperate-qt/viewer/QtTextureStorer.h>
 #include <gloperate-qt/viewer/QtKeyEventProvider.h>
 #include <gloperate-qt/viewer/QtMouseEventProvider.h>
+#include <gloperate-qt/viewer/QtPipelinePainter.h>
 #include <gloperate-qt/viewer/QtWheelEventProvider.h>
 #include <gloperate-qt/viewer/DefaultMapping.h>
 #include <gloperate-qt/widgets/ImageExporterWidget.h>
@@ -196,6 +197,12 @@ void Viewer::setPainter(Painter & painter)
     m_canvas->setPainter(m_painter.get());
     m_mapping->setPainter(m_painter.get());
     m_canvas->initialize();
+
+	QtPipelinePainter *qtPainter = dynamic_cast<QtPipelinePainter*>(&painter);
+	if (qtPainter) {
+		qtPainter->setWindow(m_canvas);
+	}
+
 
     // Register painter in scripting
     m_scriptEnvironment->addScriptApi(m_painter.get());
