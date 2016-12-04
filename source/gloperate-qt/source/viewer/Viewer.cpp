@@ -201,6 +201,7 @@ void Viewer::setPainter(Painter & painter)
 	QtPipelinePainter *qtPainter = dynamic_cast<QtPipelinePainter*>(&painter);
 	if (qtPainter) {
 		qtPainter->setWindow(m_canvas);
+		qtPainter->onInitialize();
 	}
 
 
