@@ -193,16 +193,17 @@ void Viewer::setPainter(Painter & painter)
 
     // [TODO] Check for painter context format requirements
 
+	QtPipelinePainter *qtPainter = dynamic_cast<QtPipelinePainter*>(&painter);
+	if (qtPainter) {
+		qtPainter->setWindow(m_canvas);
+	}
+
     // Setup new painter
     m_canvas->setPainter(m_painter.get());
     m_mapping->setPainter(m_painter.get());
     m_canvas->initialize();
 
-	QtPipelinePainter *qtPainter = dynamic_cast<QtPipelinePainter*>(&painter);
-	if (qtPainter) {
-		qtPainter->setWindow(m_canvas);
-		qtPainter->onInitialize();
-	}
+
 
 
     // Register painter in scripting
