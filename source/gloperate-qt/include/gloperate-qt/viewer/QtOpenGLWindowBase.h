@@ -95,6 +95,8 @@ public:
     */
 	void doneCurrent();
 
+	void setOpenGLenabled(bool glEnabled);
+
 
 protected:
     /**
@@ -141,6 +143,8 @@ protected:
     QScopedPointer<QOpenGLContext> m_context;       ///< OpenGL context created and used by the window
     bool                           m_initialized;   ///< Has the rendering already been initialized?
     bool                           m_updatePending; ///< Flag to indicate if a redraw has been requested
+
+	bool m_glEnabled = true;
 };
 
 

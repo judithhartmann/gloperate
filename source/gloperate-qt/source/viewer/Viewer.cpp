@@ -191,10 +191,13 @@ void Viewer::setPainter(Painter & painter)
     // Create new painter
     m_painter.reset(&painter);
 
+	m_canvas->setOpenGLenabled(true);
+
     // [TODO] Check for painter context format requirements
 
 	QtPipelinePainter *qtPainter = dynamic_cast<QtPipelinePainter*>(&painter);
 	if (qtPainter) {
+		m_canvas->setOpenGLenabled(false);
 		qtPainter->setWindow(m_canvas);
 	}
 

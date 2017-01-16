@@ -78,7 +78,7 @@ QOpenGLContext *QtOpenGLWindowBase::context() const
 
 void QtOpenGLWindowBase::updateGL()
 {
-    if (!m_updatePending) {
+    if (!m_updatePending && m_glEnabled) {
         m_updatePending = true;
         QCoreApplication::postEvent(this, new QEvent(QEvent::UpdateRequest));
     }
@@ -86,11 +86,13 @@ void QtOpenGLWindowBase::updateGL()
 
 void QtOpenGLWindowBase::initialize()
 {
-    m_context->makeCurrent(this);
+	if (m_glEnabled)
+		m_context->makeCurrent(this);
 
     onInitialize();
 
-    m_context->doneCurrent();
+	if (m_glEnabled)
+		m_context->doneCurrent();
 
     m_initialized = true;
 }
@@ -101,13 +103,15 @@ void QtOpenGLWindowBase::resize(QResizeEvent * event)
         initialize();
     }
 
-    m_context->makeCurrent(this);
+	if (m_glEnabled)
+		m_context->makeCurrent(this);
 
     QResizeEvent deviceSpecificResizeEvent(event->size() * devicePixelRatio(), event->oldSize() * devicePixelRatio());
 
     onResize(&deviceSpecificResizeEvent);
 
-    m_context->doneCurrent();
+	if (m_glEnabled)
+		m_context->doneCurrent();
 }
 
 void QtOpenGLWindowBase::paint()
@@ -120,15 +124,17 @@ void QtOpenGLWindowBase::paint()
         return;
     }
 
-    m_updatePending = false;
-
-    m_context->makeCurrent(this);
+	if (m_glEnabled) {
+		m_updatePending = false;
+		m_context->makeCurrent(this);
+	}
 
     onPaint();
 
-    m_context->swapBuffers(this);
-
-    m_context->doneCurrent();
+	if (m_glEnabled) {
+		m_context->swapBuffers(this);
+		m_context->doneCurrent();
+	}
 }
 
 void QtOpenGLWindowBase::onInitialize()
@@ -181,12 +187,19 @@ void QtOpenGLWindowBase::leaveEvent(QEvent *)
 
 void QtOpenGLWindowBase::makeCurrent()
 {
-    m_context->makeCurrent(this);
+	if (m_glEnabled)
+		m_context->makeCurrent(this);
 }
 
 void QtOpenGLWindowBase::doneCurrent()
 {
-    m_context->doneCurrent();
+	if (m_glEnabled)
+		m_context->doneCurrent();
+}
+
+void QtOpenGLWindowBase::setOpenGLenabled(bool glEnabled)
+{
+	m_glEnabled = glEnabled;
 }
 
 

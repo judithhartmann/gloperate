@@ -112,7 +112,10 @@ protected:
     gloperate::ResourceManager & m_resourceManager;
     gloperate::Painter * m_painter;                    ///< Currently used painter
     std::unique_ptr<TimePropagator> m_timePropagator;  ///< Time propagator for continous updates
-    TimerApi * m_timerApi;                             ///< Scripting timer API
+    TimerApi * m_timerApi;      
+	
+	///< Scripting timer API
+
 };
 
 

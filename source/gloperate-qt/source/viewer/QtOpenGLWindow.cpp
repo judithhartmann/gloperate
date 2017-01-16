@@ -86,7 +86,8 @@ void QtOpenGLWindow::setTimerApi(TimerApi * timerApi)
 void QtOpenGLWindow::onInitialize()
 {
     // Initialize globjects
-    globjects::init();
+	if (m_glEnabled)
+		globjects::init();
 #ifndef N_DEBUG
     globjects::DebugMessage::enable(true);
 #endif
