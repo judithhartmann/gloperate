@@ -78,8 +78,8 @@ QOpenGLContext *QtOpenGLWindowBase::context() const
 
 void QtOpenGLWindowBase::updateGL()
 {
-    if (!m_updatePending && m_glEnabled) {
-        m_updatePending = true;
+    if (!m_updatePending) {
+		m_updatePending = true;
         QCoreApplication::postEvent(this, new QEvent(QEvent::UpdateRequest));
     }
 }
@@ -124,8 +124,9 @@ void QtOpenGLWindowBase::paint()
         return;
     }
 
+	m_updatePending = false;
+
 	if (m_glEnabled) {
-		m_updatePending = false;
 		m_context->makeCurrent(this);
 	}
 
